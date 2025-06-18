@@ -1,0 +1,132 @@
+Loaded data shape: (130000, 22)
+Vocabulary size: 20000
+Data without class shape: (130000, 21)
+first 5 rows of data without class:
+  request.headers.Sec-Ch-Ua-Mobile request.headers.Sec-Ch-Ua-Platform request.headers.Accept request.headers.Connection                         request.headers.User-Agent request.headers.Cache-Control request.headers.Sec-Fetch-Mode request.headers.Content-Length request.headers.Sec-Fetch-Dest request.headers.Accept-Language request.headers.Sec-Fetch-User           request.headers.Date request.headers.Host request.headers.Cookie                         request.headers.Set-Cookie request.headers.Upgrade-Insecure-Requests   request.headers.Accept-Encoding request.headers.Sec-Fetch-Site                                        request.url request.method request.body
+0                                                                                        */*                 keep-alive  Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.3...                                                  same-origin                                                      document                  en-US,en;q=0.5                             ?1  Fri, 11 Nov 2022 02:43:10 GMT       127.0.0.1:5000                         ['ck=y9AOQjDGVdw9PVSKWJL-Zp2YTzaZ2u_FGfGzmMTfg...                                                           gzip, deflate, br                           none              http://127.0.0.1:5000/login/user/6812            GET             
+1                                                                                        */*                 keep-alive  Mozilla/5.0 (Windows NT 6.1; WOW64; rv:31.0) G...                                                  same-origin                                                      document                           de-CH                             ?1  Thu, 15 Dec 2022 00:38:35 GMT       127.0.0.1:5000                         ['ck=Rfz71BrgQI-k-bPTIpCEAiGgpYded9CUFSLZ17PII...                                                           gzip, deflate, br                           none         http://127.0.0.1:5000/orders/get/random/12            GET             
+2                               ?1                          "Windows"                    */*                 keep-alive  Mozilla/5.0 (Windows NT 6.1; WOW64; rv:31.0) G...                     max-age=0                      websocket                                                      document                           de-CH                             ?1  Sun, 18 Dec 2022 01:55:48 GMT       127.0.0.1:5000                         ['ck=eifsex9KiNhRu8UTy7OmTxIBXu86Z5VGX5lqvO3uI...                                                           gzip, deflate, br                           none    http://127.0.0.1:5000/states/get/region/midwest            GET             
+3                                                                                        */*                 keep-alive  Mozilla/5.0 (Windows NT 6.1; rv:27.3) Gecko/20...                                                    websocket                                                      document                           de-CH                             ?1  Fri, 11 Nov 2022 02:41:35 GMT       127.0.0.1:5000                         ['ck=QY0uToWRsGFQL8G6MaX5URYjm_FwyGIS5UPKHH_Ow...                                                           gzip, deflate, br                           none                             http://127.0.0.1:5000/            GET             
+4                               ?1                          "Windows"                    */*                 keep-alive  Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKi...                      no-cache                      websocket                                                      document                  en-US,en;q=0.5                             ?1  Sun, 18 Dec 2022 01:52:37 GMT       127.0.0.1:5000                         ['ck=uZXgkeqwXTEzpG3UhOkR_gA9NfSEo_mhrc0QdJLGd...                                            x-gzip, x-deflate, gzip, deflate                           none  http://127.0.0.1:5000/login/user?username=Whit...            GET             
+first 5 labels:
+0    Normal
+1    Normal
+2    Normal
+3    Normal
+4    Normal
+Name: request.Attack_Tag, dtype: object
+Processing data...
+First 5 tokenized sequences:
+  [0] ['keep', 'alive', 'mozilla', 'windows', 'nt', 'applewebkit', 'khtml', 'like', 'gecko', 'chrome', 'safari', 'same', 'origin', 'document', 'en', 'us', 'en', 'q', '<num>', '<num>', '<num>', 'fri', '<num>', 'nov', '<num>', '<time>', 'gmt', '<ip>', ':', '<num>', 'ck', '=', '<random>', '<random>', '<random>', '<random>', '<unk>', ';', 'domain', '=', 'localhost', ':', '<num>', ';', 'expires', '=', 'sun', ',', '<num>', 'dec', '<num>', '<time>', 'gmt', ',', '<random>', '=', '<random>', '<unk>', '<random>', '<unk>', '<random>', ';', 'domain', '=', 'localhost', ':', '<num>', ';', 'expires', '=', 'sat', ',', '<num>', 'nov', '<num>', '<time>', 'gmt', ',', 'session', '=', '<random>', '<random>', '<random>', '<random>', '<random>', ';', 'expires', '=', 'fri', ',', '<num>', 'nov', '<num>', '<time>', 'gmt', 'gzip', 'deflate', 'br', 'none', 'http', '://', '<ip>', ':', '<num>', '/', 'login', '/', 'user', '/', '<num>', 'get']
+  [1] ['keep', 'alive', 'mozilla', 'windows', 'nt', 'wow', 'rv', 'gecko', 'firefox', 'same', 'origin', 'document', 'de', 'ch', '<num>', 'thu', '<num>', 'dec', '<num>', '<time>', 'gmt', '<ip>', ':', '<num>', 'ck', '=', '<random>', 'k', '<random>', '<random>', '<unk>', '<random>', 'on', '<random>', ';', 'domain', '=', 'localhost', ':', '<num>', ';', 'expires', '=', 'sat', ',', '<num>', 'jan', '<num>', '<time>', 'gmt', ',', '<random>', '=', '<random>', '<random>', '<random>', '<unk>', '<random>', '<random>', '<random>', '<random>', '<random>', '<random>', ';', 'domain', '=', 'localhost', ':', '<num>', ';', 'expires', '=', 'fri', ',', '<num>', 'dec', '<num>', '<time>', 'gmt', ',', 'session', '=', '<random>', '<random>', '<random>', '<random>', '<random>', ';', 'expires', '=', 'thu', ',', '<num>', 'dec', '<num>', '<time>', 'gmt', 'gzip', 'deflate', 'br', 'none', 'http', '://', '<ip>', ':', '<num>', '/', 'orders', '/', 'get', '/', 'random', '/', '<num>', 'get']
+  [2] ['<num>', 'windows', 'keep', 'alive', 'mozilla', 'windows', 'nt', 'wow', 'rv', 'gecko', 'firefox', 'max', 'age', '<num>', 'websocket', 'document', 'de', 'ch', '<num>', 'sun', '<num>', 'dec', '<num>', '<time>', 'gmt', '<ip>', ':', '<num>', 'ck', '=', '<random>', '<random>', '<random>', ';', 'domain', '=', '<domain>', '/', 'paypal', '<unk>', '/', '<random>', '/', '<random>', '/', '<random>', '/', '<random>', '/', ';', 'expires', '=', 'wed', ',', '<num>', 'feb', '<num>', '<time>', 'gmt', ',', '<random>', '=', '<random>', '<random>', ';', 'domain', '=', 'http', '://', '<domain>', '/', '<file>', '?', 'option', '=', 'com', 'content', '&', 'view', '=', 'article', '&', 'id', '=', '<num>', '&', '<unk>', '=', '<num>', ';', 'expires', '=', 'thu', ',', '<num>', 'feb', '<num>', '<time>', 'gmt', ',', 'session', '=', '<random>', '<random>', '<random>', '<random>', '<random>', ';', 'expires', '=', 'sun', ',', '<num>', 'dec', '<num>', '<time>', 'gmt', 'gzip', 'deflate', 'br', 'none', 'http', '://', '<ip>', ':', '<num>', '/', 'states', '/', 'get', '/', 'region', '/', 'midwest', 'get']
+  [3] ['keep', 'alive', 'mozilla', 'windows', 'nt', 'rv', 'gecko', 'firefox', 'websocket', 'document', 'de', 'ch', '<num>', 'fri', '<num>', 'nov', '<num>', '<time>', 'gmt', '<ip>', ':', '<num>', 'ck', '=', '<random>', '<random>', '<random>', '<random>', '<random>', '<unk>', ';', 'domain', '=', 'localhost', ':', '<num>', ';', 'expires', '=', 'sun', ',', '<num>', 'dec', '<num>', '<time>', 'gmt', ',', '<random>', '=', '<random>', '<random>', ';', 'domain', '=', 'localhost', ':', '<num>', ';', 'expires', '=', 'sat', ',', '<num>', 'nov', '<num>', '<time>', 'gmt', ',', 'session', '=', '<random>', '<random>', '<random>', '<random>', '<random>', ';', 'expires', '=', 'fri', ',', '<num>', 'nov', '<num>', '<time>', 'gmt', 'gzip', 'deflate', 'br', 'none', 'http', '://', '<ip>', ':', '<num>', '/', 'get']
+  [4] ['<num>', 'windows', 'keep', 'alive', 'mozilla', 'windows', 'nt', 'wow', 'applewebkit', 'khtml', 'like', 'gecko', 'chrome', 'safari', 'no', 'cache', 'websocket', 'document', 'en', 'us', 'en', 'q', '<num>', '<num>', '<num>', 'sun', '<num>', 'dec', '<num>', '<time>', 'gmt', '<ip>', ':', '<num>', 'ck', '=', '<random>', '<random>', '<random>', '<random>', '<random>', '<random>', ';', 'domain', '=', '<domain>', '/', '<unk>', ';', 'expires', '=', 'mon', ',', '<num>', 'feb', '<num>', '<time>', 'gmt', ',', '<random>', '=', '<random>', '<random>', '<random>', '<unk>', 'ks', 'g', ';', 'domain', '=', '<domain>', '/', 'watch', '?', 'v', '=', '<random>', ';', 'expires', '=', 'wed', ',', '<num>', 'dec', '<num>', '<time>', 'gmt', ',', 'session', '=', '<random>', '<random>', '<random>', '<num>', '<random>', ';', 'expires', '=', 'sun', ',', '<num>', 'dec', '<num>', '<time>', 'gmt', 'x', 'gzip', 'x', 'deflate', 'gzip', 'deflate', 'none', 'http', '://', '<ip>', ':', '<num>', '/', 'login', '/', 'user', '?', 'username', '=', '<unk>', '&', 'password', '=', '<random>', 'get']
+Converting tokens to IDs...
+First 5 token ID sequences:
+  [0] [6472, 332, 7844, 13293, 8239, 594, 6517, 6934, 4795, 2096, 10480, 10520, 8546, 3400, 3828, 12742, 3828, 9591, 16, 16, 16, 4658, 16, 8221, 16, 20, 4925, 15, 10, 16, 2143, 22, 18, 18, 18, 18, 21, 12, 3424, 22, 7023, 10, 16, 12, 4120, 22, 11660, 6, 16, 3003, 16, 20, 4925, 6, 18, 22, 18, 21, 18, 21, 18, 12, 3424, 22, 7023, 10, 16, 12, 4120, 22, 10560, 6, 16, 8221, 16, 20, 4925, 6, 10818, 22, 18, 18, 18, 18, 18, 12, 4120, 22, 4658, 6, 16, 8221, 16, 20, 4925, 5141, 3055, 1471, 8178, 5586, 11, 15, 10, 16, 9, 7049, 9, 12754, 9, 16, 4845]
+  [1] [6472, 332, 7844, 13293, 8239, 13395, 10456, 4795, 4414, 10520, 8546, 3400, 2980, 1972, 16, 12107, 16, 3003, 16, 20, 4925, 15, 10, 16, 2143, 22, 18, 6421, 18, 18, 21, 18, 8432, 18, 12, 3424, 22, 7023, 10, 16, 12, 4120, 22, 10560, 6, 16, 6248, 16, 20, 4925, 6, 18, 22, 18, 18, 18, 21, 18, 18, 18, 18, 18, 18, 12, 3424, 22, 7023, 10, 16, 12, 4120, 22, 4658, 6, 16, 3003, 16, 20, 4925, 6, 10818, 22, 18, 18, 18, 18, 18, 12, 4120, 22, 12107, 6, 16, 3003, 16, 20, 4925, 5141, 3055, 1471, 8178, 5586, 11, 15, 10, 16, 9, 8522, 9, 4845, 9, 9722, 9, 16, 4845]
+  [2] [16, 13293, 6472, 332, 7844, 13293, 8239, 13395, 10456, 4795, 4414, 7408, 210, 16, 13175, 3400, 2980, 1972, 16, 11660, 16, 3003, 16, 20, 4925, 15, 10, 16, 2143, 22, 18, 18, 18, 12, 3424, 22, 13, 9, 8846, 21, 9, 18, 9, 18, 9, 18, 9, 18, 9, 12, 4120, 22, 13177, 6, 16, 4272, 16, 20, 4925, 6, 18, 22, 18, 18, 12, 3424, 22, 5586, 11, 13, 9, 14, 23, 8501, 22, 2330, 2542, 2, 12932, 22, 721, 2, 5689, 22, 16, 2, 21, 22, 16, 12, 4120, 22, 12107, 6, 16, 4272, 16, 20, 4925, 6, 10818, 22, 18, 18, 18, 18, 18, 12, 4120, 22, 11660, 6, 16, 3003, 16, 20, 4925, 5141, 3055, 1471, 8178, 5586, 11, 15, 10, 16, 9, 11434, 9, 4845, 9, 9918, 9, 7590, 4845]
+  [3] [6472, 332, 7844, 13293, 8239, 10456, 4795, 4414, 13175, 3400, 2980, 1972, 16, 4658, 16, 8221, 16, 20, 4925, 15, 10, 16, 2143, 22, 18, 18, 18, 18, 18, 21, 12, 3424, 22, 7023, 10, 16, 12, 4120, 22, 11660, 6, 16, 3003, 16, 20, 4925, 6, 18, 22, 18, 18, 12, 3424, 22, 7023, 10, 16, 12, 4120, 22, 10560, 6, 16, 8221, 16, 20, 4925, 6, 10818, 22, 18, 18, 18, 18, 18, 12, 4120, 22, 4658, 6, 16, 8221, 16, 20, 4925, 5141, 3055, 1471, 8178, 5586, 11, 15, 10, 16, 9, 4845]
+  [4] [16, 13293, 6472, 332, 7844, 13293, 8239, 13395, 594, 6517, 6934, 4795, 2096, 10480, 8156, 1716, 13175, 3400, 3828, 12742, 3828, 9591, 16, 16, 16, 11660, 16, 3003, 16, 20, 4925, 15, 10, 16, 2143, 22, 18, 18, 18, 18, 18, 18, 12, 3424, 22, 13, 9, 21, 12, 4120, 22, 7745, 6, 16, 4272, 16, 20, 4925, 6, 18, 22, 18, 18, 18, 21, 6617, 4729, 12, 3424, 22, 13, 9, 13132, 23, 12794, 22, 18, 12, 4120, 22, 13177, 6, 16, 3003, 16, 20, 4925, 6, 10818, 22, 18, 18, 18, 16, 18, 12, 4120, 22, 11660, 6, 16, 3003, 16, 20, 4925, 13427, 5141, 13427, 3055, 5141, 3055, 8178, 5586, 11, 15, 10, 16, 9, 7049, 9, 12754, 23, 12755, 22, 21, 2, 8794, 22, 18, 4845]
+Label mapping: 
+'Normal': 0,
+'Directory Traversal': 1,
+'SQL Injection': 2,
+'XSS': 3,
+'Log Forging': 4,
+'Cookie Injection': 5,
+'RCE': 6,
+'LOG4J': 7
+Training LTModel...
+Epoch 1/15 completed - Loss: 2.594219, Accuracy: 45.33%
+Epoch 2/15 completed - Loss: 2.168215, Accuracy: 52.11%
+Epoch 3/15 completed - Loss: 1.761077, Accuracy: 58.78%
+Epoch 4/15 completed - Loss: 0.846687, Accuracy: 75.68%
+Epoch 5/15 completed - Loss: 0.162141, Accuracy: 95.67%
+Epoch 6/15 completed - Loss: 0.070281, Accuracy: 98.24%
+Epoch 7/15 completed - Loss: 0.058075, Accuracy: 98.51%
+Epoch 8/15 completed - Loss: 0.054018, Accuracy: 98.59%
+Epoch 9/15 completed - Loss: 0.053603, Accuracy: 98.60%
+Epoch 10/15 completed - Loss: 0.053482, Accuracy: 98.61%
+Epoch 11/15 completed - Loss: 0.052514, Accuracy: 98.62%
+Epoch 12/15 completed - Loss: 0.052037, Accuracy: 98.58%
+Epoch 13/15 completed - Loss: 0.051648, Accuracy: 98.65%
+Epoch 14/15 completed - Loss: 0.051812, Accuracy: 98.65%
+Epoch 15/15 completed - Loss: 0.050877, Accuracy: 98.62%
+LTModel saved successfully!
+Training BiLSTM model...
+Epoch 1/15 - Loss: 0.9406, Accuracy: 58.70%
+Epoch 2/15 - Loss: 0.1557, Accuracy: 90.60%
+Epoch 3/15 - Loss: 0.0544, Accuracy: 97.52%
+Epoch 4/15 - Loss: 0.0421, Accuracy: 98.15%
+Epoch 5/15 - Loss: 0.0391, Accuracy: 98.25%
+Epoch 6/15 - Loss: 0.0333, Accuracy: 98.39%
+Epoch 7/15 - Loss: 0.0246, Accuracy: 98.69%
+Epoch 8/15 - Loss: 0.0227, Accuracy: 98.71%
+Epoch 9/15 - Loss: 0.0212, Accuracy: 98.76%
+Epoch 10/15 - Loss: 0.0208, Accuracy: 98.78%
+Epoch 11/15 - Loss: 0.0214, Accuracy: 98.76%
+Epoch 12/15 - Loss: 0.0203, Accuracy: 98.81%
+Epoch 13/15 - Loss: 0.0199, Accuracy: 98.84%
+Epoch 14/15 - Loss: 0.0197, Accuracy: 98.82%
+Epoch 15/15 - Loss: 0.0192, Accuracy: 98.84%
+Evaluating Attention model on test data...
+Evaluation Accuracy: 0.9882
+
+Classification Report:
+                     precision    recall  f1-score   support
+
+             Normal       1.00      1.00      1.00     13100
+Directory Traversal       1.00      0.97      0.98      1331
+      SQL Injection       0.97      0.97      0.97      2745
+                XSS       0.94      0.98      0.96      2137
+        Log Forging       0.99      0.96      0.97      1428
+   Cookie Injection       1.00      1.00      1.00      2671
+                RCE       1.00      0.96      0.98      1264
+              LOG4J       0.97      0.98      0.97      1324
+
+           accuracy                           0.99     26000
+          macro avg       0.98      0.98      0.98     26000
+       weighted avg       0.99      0.99      0.99     26000
+
+
+Confusion Matrix:
+[[13098     0     2     0     0     0     0     0]
+ [    0  1294    13    17     2     0     2     3]
+ [    1     1  2671    51     7     1     1    12]
+ [    0     1    34  2092     2     0     1     7]
+ [    0     0    22    37  1364     1     0     4]
+ [    0     0     0     0     0  2662     0     9]
+ [    0     1    18    25     1     0  1214     5]
+ [   21     0     3     1     0     2     0  1297]]
+Evaluating BiLSTM model on test data...
+Evaluation Accuracy: 0.9885
+
+Classification Report:
+                     precision    recall  f1-score   support
+
+             Normal       1.00      1.00      1.00     13100
+Directory Traversal       1.00      0.97      0.99      1331
+      SQL Injection       0.99      0.97      0.98      2745
+                XSS       0.92      0.99      0.95      2137
+        Log Forging       0.99      0.96      0.97      1428
+   Cookie Injection       1.00      1.00      1.00      2671
+                RCE       1.00      0.96      0.98      1264
+              LOG4J       0.98      0.98      0.98      1324
+
+           accuracy                           0.99     26000
+          macro avg       0.98      0.98      0.98     26000
+       weighted avg       0.99      0.99      0.99     26000
+
+
+Confusion Matrix:
+[[13096     0     1     0     0     1     0     2]
+ [    0  1294     3    32     0     0     0     2]
+ [    0     0  2651    78    11     0     0     5]
+ [    0     0    15  2116     0     0     0     6]
+ [    0     0    14    42  1367     0     0     5]
+ [    0     0     0     0     0  2666     0     5]
+ [    0     1     4    39     0     0  1218     2]
+ [   21     0     2     5     0     2     1  1293]]
+BiLSTM model saved successfully!
