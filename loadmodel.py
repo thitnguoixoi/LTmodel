@@ -25,7 +25,7 @@ def get_model():
         hidden_size=128,
         num_layers=2,
         num_heads=8,
-        ff_size=1024,       # MATCHED to checkpoint feed-forward layer size
+        ff_size=2048,       # MATCHED to checkpoint feed-forward layer size
         dropout=0.1,        # MATCHED to training default
         num_classes=8       # MATCHED to training (number of attack types)
     ).to(device)
@@ -50,10 +50,12 @@ def convert_tokens_to_ids(tokens):
 @app.route('/detect', methods=['POST'])
 def detect():
     input_json = request.get_json()
+    print(f"Received JSON: {input_json}")  # Debugging line
     if not input_json:
         return jsonify({"error": "No JSON payload provided"}), 400
 
     tokens = tokenize_and_pad(input_json)
+    print(f"Tokenized input: {tokens}")  # Debugging line
     token_ids = convert_tokens_to_ids(tokens)
     input_ids = torch.tensor([token_ids], dtype=torch.long, device=device)
 
@@ -72,7 +74,7 @@ if __name__ == '__main__':
     with open('final_filtered_vocab.json', 'r', encoding='utf-8') as f:
         vocab = json.load(f)
 
-    MAX_SEQ_LENGTH = 160
+    MAX_SEQ_LENGTH = 512
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     checkpoint = torch.load(

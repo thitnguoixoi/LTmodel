@@ -17,14 +17,5 @@
             "method": "GET",
             "url": "http://127.0.0.1:5000/orders/get/country?country=';SELECT%20*%20FROM%20us_states%20limit59--",
             "body": ""
-        },
-        "response": {
-            "status": "200 OK",
-            "headers": {
-                "Content-Type": "application/json",
-                "Content-Length": "309"
-            },
-            "status_code": 200,
-            "body": "[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]"
         }
     }

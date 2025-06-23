@@ -18,18 +18,20 @@ from bilstm import BiLSTMModel
 import HTokenizer
 import json
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+import seaborn as sns
 
 
 def main():
 
     pd.set_option("display.max_columns", None)  # Hiển thị tất cả các cột
     pd.set_option("display.max_rows", None)     # Hiển thị tất cả các dòng
-    pd.set_option("display.width", 1000)        # Độ rộng dòng đủ lớn để không bị xuống dòng
+    # Độ rộng dòng đủ lớn để không bị xuống dòng
+    pd.set_option("display.width", 1000)
 
     # Load data & vocab
     df = pd.read_csv("alldata_balanced.csv", low_memory=False)
     for col in df.columns:
-       df[col] = df[col].astype('object').fillna('')
+        df[col] = df[col].astype('object').fillna('')
     logger.info(f"Loaded data shape: {df.shape}")
 
     vocab = {}
@@ -59,7 +61,7 @@ def main():
     logger.info("First 5 token ID sequences:")
     for i, ids in enumerate(token_ids_data[:5]):
         logger.info(f"  [{i}] {ids}")
-    maxlen = 160
+    maxlen = 512
 
     # Prepare data loaders
     train_loader, test_loader = prepare_data(
@@ -70,7 +72,7 @@ def main():
         vocab_size=len(vocab),
         hidden_size=128,
         num_layers=2,
-        num_classes = 8
+        num_classes=8
     )
     if hasattr(model, 'position_encoding') and hasattr(model.position_encoding, 'max_len'):
         model.position_encoding.max_len = maxlen
@@ -82,7 +84,7 @@ def main():
         optimizer, step_size=7, gamma=0.1)
     model = model.to(device)
     logger.info("Training LTModel...")
-    train_optimized_model(
+    history_att = train_optimized_model(
         model, train_loader, optimizer, scheduler, device,
         epochs=15, accumulation_steps=16, batch_chunks=2, criterion=criterion
     )
@@ -97,24 +99,31 @@ def main():
     }, 'final_model_complete.pt')
     logger.info("LTModel saved successfully!")
 
-   
     # Train BiLSTM
     bilstm_model = BiLSTMModel(
         len(vocab), 128, 128, 2, 8, 0.1
     ).to(device)
     bilstm_optimizer = optim.AdamW(
-        bilstm_model.parameters(), lr=5e-5, weight_decay=1e-5)
+        bilstm_model.parameters(), lr=1e-4, weight_decay=1e-5)
     bilstm_scheduler = optim.lr_scheduler.CosineAnnealingWarmRestarts(
         bilstm_optimizer, T_0=5, T_mult=1, eta_min=1e-5)
     logger.info("Training BiLSTM model...")
-    bilstm_model = train_bilstm(
+    bilstm_model, history_bilstm= train_bilstm(
         bilstm_model, train_loader, bilstm_optimizer, bilstm_scheduler,
         epochs=15, device=device, criterion=criterion
     )
+
+    # Evaluate và vẽ confusion matrix
     logger.info("Evaluating Attention model on test data...")
-    evaluate_model(model, test_loader, device=device)
+    acc_att, report_att, conf_matrix_att = evaluate_model(model, test_loader, device=device)
+    plot_confusion_matrix(conf_matrix_att, labels=['Normal','Directory Traversal','SQL Injection','XSS','Log Forging','Cookie Injection','RCE','LOG4J'], title="LTModel Confusion Matrix")
+
     logger.info("Evaluating BiLSTM model on test data...")
-    evaluate_model(bilstm_model, test_loader, device=device)
+    acc_bilstm, report_bilstm, conf_matrix_bilstm = evaluate_model(bilstm_model, test_loader, device=device)
+    plot_history(history_att, title_prefix="LTModel", save_path="ltmodel_train.png")
+    plot_history(history_bilstm, title_prefix="BiLSTM", save_path="bilstm_train.png")
+    plot_confusion_matrix(conf_matrix_att, labels=[...], title="LTModel Confusion Matrix", save_path="ltmodel_confmat.png")
+    plot_confusion_matrix(conf_matrix_bilstm, labels=[...], title="BiLSTM Confusion Matrix", save_path="bilstm_confmat.png")
     torch.save({
         'model_state_dict': bilstm_model.state_dict(),
         'vocab_size': len(vocab),
@@ -127,6 +136,7 @@ def main():
     logger.info("BiLSTM model saved successfully!")
 # Prepare data for training
 
+
 class FocalLoss(nn.Module):
     def __init__(self, gamma=2, weight=None, reduction='mean'):
         super(FocalLoss, self).__init__()
@@ -136,7 +146,8 @@ class FocalLoss(nn.Module):
 
     def forward(self, input, target):
         # Compute standard cross entropy loss (per sample)
-        ce_loss = F.cross_entropy(input, target, weight=self.weight, reduction='none')
+        ce_loss = F.cross_entropy(
+            input, target, weight=self.weight, reduction='none')
         # Compute the probability of the true class
         pt = torch.exp(-ce_loss)
         focal_loss = ((1 - pt) ** self.gamma) * ce_loss
@@ -146,6 +157,40 @@ class FocalLoss(nn.Module):
             return focal_loss.sum()
         else:
             return focal_loss
+
+
+def plot_history(history, title_prefix="", save_path=None):
+    epochs = range(1, len(history["loss"]) + 1)
+    plt.figure(figsize=(12, 5))
+    plt.subplot(1, 2, 1)
+    plt.plot(epochs, history["loss"], label="Loss")
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.title(f"{title_prefix} Loss")
+    plt.legend()
+
+    plt.subplot(1, 2, 2)
+    plt.plot(epochs, history["accuracy"], label="Accuracy")
+    plt.xlabel("Epoch")
+    plt.ylabel("Accuracy (%)")
+    plt.title(f"{title_prefix} Accuracy")
+    plt.legend()
+    plt.tight_layout()
+    if save_path:
+        plt.savefig(save_path)
+    plt.show()
+
+def plot_confusion_matrix(conf_matrix, labels, title="Confusion Matrix", save_path=None):
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues",
+                xticklabels=labels, yticklabels=labels)
+    plt.xlabel("Predicted")
+    plt.ylabel("True")
+    plt.title(title)
+    plt.tight_layout()
+    if save_path:
+        plt.savefig(save_path)
+    plt.show()
 def prepare_data(token_ids_data, labels, vocab, max_len=128, test_size=0.2, batch_size=32):
     """
     Prepare data for training by padding sequences, splitting into train/test sets,
@@ -267,6 +312,7 @@ def train_optimized_model(model, train_loader, optimizer, scheduler, device, epo
     scaler = torch.amp.GradScaler('cuda') if use_amp else None
 
     from tqdm.auto import tqdm
+    history = {"loss": [], "accuracy": []}  # Thêm dòng này
 
     for epoch in range(epochs):
         total_loss = 0
@@ -383,7 +429,9 @@ def train_optimized_model(model, train_loader, optimizer, scheduler, device, epo
         avg_loss = total_loss / len(train_loader)
         logger.info(
             f'Epoch {epoch+1}/{epochs} completed - Loss: {avg_loss:.6f}, Accuracy: {epoch_accuracy:.2f}%')
-
+        history["loss"].append(avg_loss)
+        history["accuracy"].append(epoch_accuracy)
+    return history
 
 def train_bilstm(model, train_loader, optimizer, scheduler, epochs, device, criterion):
     model.train()
@@ -393,6 +441,7 @@ def train_bilstm(model, train_loader, optimizer, scheduler, epochs, device, crit
         total_loss = 0
         correct = 0
         total = 0
+        history = {"loss": [], "accuracy": []}  # Thêm dòng này
 
         progress_bar = tqdm(train_loader, desc=f'Epoch {epoch+1}/{epochs}')
 
@@ -431,8 +480,11 @@ def train_bilstm(model, train_loader, optimizer, scheduler, epochs, device, crit
 
         logger.info(
             f'Epoch {epoch+1}/{epochs} - Loss: {avg_loss:.4f}, Accuracy: {accuracy:.2f}%')
+        history["loss"].append(avg_loss)
+        history["accuracy"].append(accuracy)
 
-    return model
+
+    return model, history
 
 
 def evaluate_model(model, test_loader, device):
@@ -458,13 +510,13 @@ def evaluate_model(model, test_loader, device):
     accuracy = accuracy_score(all_targets, all_preds)
     report = classification_report(
         all_targets, all_preds, target_names=['Normal',
- 'Directory Traversal',
- 'SQL Injection',
- 'XSS',
- 'Log Forging',
- 'Cookie Injection',
- 'RCE',
- 'LOG4J'])
+                                              'Directory Traversal',
+                                              'SQL Injection',
+                                              'XSS',
+                                              'Log Forging',
+                                              'Cookie Injection',
+                                              'RCE',
+                                              'LOG4J'])
     conf_matrix = confusion_matrix(all_targets, all_preds)
 
     logger.info(f"Evaluation Accuracy: {accuracy:.4f}")

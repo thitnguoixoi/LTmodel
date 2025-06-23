@@ -39,94 +39,94 @@ Label mapping:
 'RCE': 6,
 'LOG4J': 7
 Training LTModel...
-Epoch 1/15 completed - Loss: 2.594219, Accuracy: 45.33%
-Epoch 2/15 completed - Loss: 2.168215, Accuracy: 52.11%
-Epoch 3/15 completed - Loss: 1.761077, Accuracy: 58.78%
-Epoch 4/15 completed - Loss: 0.846687, Accuracy: 75.68%
-Epoch 5/15 completed - Loss: 0.162141, Accuracy: 95.67%
-Epoch 6/15 completed - Loss: 0.070281, Accuracy: 98.24%
-Epoch 7/15 completed - Loss: 0.058075, Accuracy: 98.51%
-Epoch 8/15 completed - Loss: 0.054018, Accuracy: 98.59%
-Epoch 9/15 completed - Loss: 0.053603, Accuracy: 98.60%
-Epoch 10/15 completed - Loss: 0.053482, Accuracy: 98.61%
-Epoch 11/15 completed - Loss: 0.052514, Accuracy: 98.62%
-Epoch 12/15 completed - Loss: 0.052037, Accuracy: 98.58%
-Epoch 13/15 completed - Loss: 0.051648, Accuracy: 98.65%
-Epoch 14/15 completed - Loss: 0.051812, Accuracy: 98.65%
-Epoch 15/15 completed - Loss: 0.050877, Accuracy: 98.62%
+Epoch 1/15 completed - Loss: 2.593101, Accuracy: 45.87%
+Epoch 2/15 completed - Loss: 2.178319, Accuracy: 51.59%
+Epoch 3/15 completed - Loss: 1.668596, Accuracy: 60.08%
+Epoch 4/15 completed - Loss: 0.792937, Accuracy: 76.35%
+Epoch 5/15 completed - Loss: 0.176063, Accuracy: 94.67%
+Epoch 6/15 completed - Loss: 0.079258, Accuracy: 98.04%
+Epoch 7/15 completed - Loss: 0.062695, Accuracy: 98.39%
+Epoch 8/15 completed - Loss: 0.055817, Accuracy: 98.57%
+Epoch 9/15 completed - Loss: 0.055352, Accuracy: 98.54%
+Epoch 10/15 completed - Loss: 0.053848, Accuracy: 98.58%
+Epoch 11/15 completed - Loss: 0.052546, Accuracy: 98.60%
+Epoch 12/15 completed - Loss: 0.053466, Accuracy: 98.59%
+Epoch 13/15 completed - Loss: 0.051349, Accuracy: 98.65%
+Epoch 14/15 completed - Loss: 0.050519, Accuracy: 98.62%
+Epoch 15/15 completed - Loss: 0.050531, Accuracy: 98.63%
 LTModel saved successfully!
 Training BiLSTM model...
-Epoch 1/15 - Loss: 0.9406, Accuracy: 58.70%
-Epoch 2/15 - Loss: 0.1557, Accuracy: 90.60%
-Epoch 3/15 - Loss: 0.0544, Accuracy: 97.52%
-Epoch 4/15 - Loss: 0.0421, Accuracy: 98.15%
-Epoch 5/15 - Loss: 0.0391, Accuracy: 98.25%
-Epoch 6/15 - Loss: 0.0333, Accuracy: 98.39%
-Epoch 7/15 - Loss: 0.0246, Accuracy: 98.69%
-Epoch 8/15 - Loss: 0.0227, Accuracy: 98.71%
-Epoch 9/15 - Loss: 0.0212, Accuracy: 98.76%
-Epoch 10/15 - Loss: 0.0208, Accuracy: 98.78%
-Epoch 11/15 - Loss: 0.0214, Accuracy: 98.76%
-Epoch 12/15 - Loss: 0.0203, Accuracy: 98.81%
-Epoch 13/15 - Loss: 0.0199, Accuracy: 98.84%
-Epoch 14/15 - Loss: 0.0197, Accuracy: 98.82%
-Epoch 15/15 - Loss: 0.0192, Accuracy: 98.84%
+Epoch 1/15 - Loss: 0.9985, Accuracy: 53.67%
+Epoch 2/15 - Loss: 0.8196, Accuracy: 59.89%
+Epoch 3/15 - Loss: 0.6483, Accuracy: 66.20%
+Epoch 4/15 - Loss: 0.6364, Accuracy: 66.66%
+Epoch 5/15 - Loss: 0.6327, Accuracy: 66.75%
+Epoch 6/15 - Loss: 0.6307, Accuracy: 66.65%
+Epoch 7/15 - Loss: 0.6249, Accuracy: 66.83%
+Epoch 8/15 - Loss: 0.6194, Accuracy: 66.97%
+Epoch 9/15 - Loss: 0.6164, Accuracy: 67.06%
+Epoch 10/15 - Loss: 0.6145, Accuracy: 67.09%
+Epoch 11/15 - Loss: 0.6141, Accuracy: 67.08%
+Epoch 12/15 - Loss: 0.6119, Accuracy: 66.93%
+Epoch 13/15 - Loss: 0.6099, Accuracy: 67.13%
+Epoch 14/15 - Loss: 0.6078, Accuracy: 67.22%
+Epoch 15/15 - Loss: 0.6059, Accuracy: 67.15%
 Evaluating Attention model on test data...
-Evaluation Accuracy: 0.9882
+Evaluation Accuracy: 0.9830
 
 Classification Report:
                      precision    recall  f1-score   support
 
-             Normal       1.00      1.00      1.00     13100
-Directory Traversal       1.00      0.97      0.98      1331
-      SQL Injection       0.97      0.97      0.97      2745
-                XSS       0.94      0.98      0.96      2137
-        Log Forging       0.99      0.96      0.97      1428
+             Normal       0.98      1.00      0.99     13100
+Directory Traversal       1.00      1.00      1.00      1331
+      SQL Injection       1.00      1.00      1.00      2745
+                XSS       0.95      1.00      0.98      2137
+        Log Forging       1.00      0.78      0.88      1428
    Cookie Injection       1.00      1.00      1.00      2671
-                RCE       1.00      0.96      0.98      1264
-              LOG4J       0.97      0.98      0.97      1324
+                RCE       1.00      0.92      0.96      1264
+              LOG4J       0.98      1.00      0.99      1324
 
-           accuracy                           0.99     26000
-          macro avg       0.98      0.98      0.98     26000
-       weighted avg       0.99      0.99      0.99     26000
+           accuracy                           0.98     26000
+          macro avg       0.99      0.96      0.97     26000
+       weighted avg       0.98      0.98      0.98     26000
 
 
 Confusion Matrix:
-[[13098     0     2     0     0     0     0     0]
- [    0  1294    13    17     2     0     2     3]
- [    1     1  2671    51     7     1     1    12]
- [    0     1    34  2092     2     0     1     7]
- [    0     0    22    37  1364     1     0     4]
+[[13099     0     1     0     0     0     0     0]
+ [    0  1331     0     0     0     0     0     0]
+ [    0     0  2733     2     0     0     1     9]
+ [    0     0     0  2133     0     0     1     3]
+ [  300     0     1     1  1120     0     0     6]
  [    0     0     0     0     0  2662     0     9]
- [    0     1    18    25     1     0  1214     5]
- [   21     0     3     1     0     2     0  1297]]
+ [    0     0     1    96     0     0  1161     6]
+ [    0     0     0     2     0     0     2  1320]]
 Evaluating BiLSTM model on test data...
-Evaluation Accuracy: 0.9885
+Evaluation Accuracy: 0.6751
 
 Classification Report:
                      precision    recall  f1-score   support
 
-             Normal       1.00      1.00      1.00     13100
-Directory Traversal       1.00      0.97      0.99      1331
-      SQL Injection       0.99      0.97      0.98      2745
-                XSS       0.92      0.99      0.95      2137
-        Log Forging       0.99      0.96      0.97      1428
+             Normal       0.76      0.99      0.86     13100
+Directory Traversal       0.00      0.00      0.00      1331
+      SQL Injection       0.24      0.05      0.08      2745
+                XSS       0.28      0.72      0.41      2137
+        Log Forging       0.00      0.00      0.00      1428
    Cookie Injection       1.00      1.00      1.00      2671
-                RCE       1.00      0.96      0.98      1264
-              LOG4J       0.98      0.98      0.98      1324
+                RCE       0.00      0.00      0.00      1264
+              LOG4J       0.95      0.17      0.29      1324
 
-           accuracy                           0.99     26000
-          macro avg       0.98      0.98      0.98     26000
-       weighted avg       0.99      0.99      0.99     26000
+           accuracy                           0.68     26000
+          macro avg       0.40      0.37      0.33     26000
+       weighted avg       0.58      0.68      0.59     26000
 
 
 Confusion Matrix:
-[[13096     0     1     0     0     1     0     2]
- [    0  1294     3    32     0     0     0     2]
- [    0     0  2651    78    11     0     0     5]
- [    0     0    15  2116     0     0     0     6]
- [    0     0    14    42  1367     0     0     5]
- [    0     0     0     0     0  2666     0     5]
- [    0     1     4    39     0     0  1218     2]
- [   21     0     2     5     0     2     1  1293]]
+[[13000     0   100     0     0     0     0     0]
+ [  531     0    76   722     0     0     0     2]
+ [ 1060     0   131  1552     0     0     0     2]
+ [  573     0    31  1530     0     0     0     3]
+ [  558     0    81   788     0     0     0     1]
+ [    6     0     0     1     0  2662     0     2]
+ [  479     0    75   709     0     0     0     1]
+ [  937     0    59    99     0     0     0   229]]
 BiLSTM model saved successfully!
