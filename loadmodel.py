@@ -62,7 +62,10 @@ model = get_model()
 ###############################################################################
 
 def tokenize_and_pad(data: Dict[str, Any]) -> List[str]:
+    print("Tokenizing input data...")  # Debug: print message
+    print("Input data:", data)  # Debug: print input data
     toks = tokenizer.tokenize_json(data)
+    print(toks)  # Debug: print tokens")
     return (toks + ["<pad>"] * MAX_SEQ_LENGTH)[:MAX_SEQ_LENGTH]
 
 def tokens_to_ids(tokens: List[str]) -> List[int]:
