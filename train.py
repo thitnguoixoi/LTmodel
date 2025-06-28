@@ -61,7 +61,7 @@ def main():
     logger.info("First 5 token ID sequences:")
     for i, ids in enumerate(token_ids_data[:5]):
         logger.info(f"  [{i}] {ids}")
-    maxlen = 512
+    maxlen = 256
 
     # Prepare data loaders
     train_loader, test_loader = prepare_data(

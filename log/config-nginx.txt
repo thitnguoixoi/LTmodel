@@ -1,0 +1,22 @@
+log_format json_combined escape=json '{'
+        '"request":{'
+            '"headers":{'
+                '"Host":"$host",'
+                '"User-Agent":"$http_user_agent",'
+                '"Accept-Encoding":"$http_accept_encoding",'
+                '"Accept":"$http_accept",'
+                '"Connection":"$http_connection",'
+                '"Accept-Language":"$http_accept_language",'
+                '"Sec-Fetch-Site":"$http_sec_fetch_site",'
+                '"Sec-Fetch-Mode":"$http_sec_fetch_mode",'
+                '"Sec-Fetch-User":"$http_sec_fetch_user",'
+                '"Sec-Fetch-Dest":"$http_sec_fetch_dest",'
+                '"Cookie":"$http_cookie",'
+                '"Date":"$http_date"'
+            '},'
+        '"method":"$request_method",'
+        '"url":"$scheme://$host$uri$is_args$args",'
+        '"body":"$request_body"'
+    '}}';
+access_log /var/log/nginx/access.json json_combined;
+

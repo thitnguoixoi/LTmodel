@@ -5,7 +5,7 @@ import requests
 url = 'http://localhost:8888/detect'
 
 # Path to your JSON lines file
-filename = 'access.json'
+filename = 'log\\access.json'
 
 with open(filename, 'r', encoding='utf-8') as f:
     for idx, line in enumerate(f, 1):
